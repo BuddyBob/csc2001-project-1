@@ -105,8 +105,9 @@ public class MainGUI extends JFrame {
             String location = locationField.getText();
             int maxParticipants = Integer.parseInt(maxField.getText());
 
-            // TO DO: construct a session object, insert it into
-            // the list of sessions
+            //Create a session object
+            Session sesh = new Session(id, title,mentor, date, location, maxParticipants);
+
 
             outputArea.setText("Session Added Successfully\n");
             // Clear the input fields

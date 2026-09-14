@@ -1,0 +1,419 @@
+CSC 2001 PROJECT 1
+Mentorship Session Manager
+
+CSC 2001 PROJECT 1
+Mentorship Session Manager
+
+GOAL
+Build a Java application that stores and manages mentorship sessions using a linked list.
+
+Each session needs:
+
+* ID
+* Title
+* Mentor
+* Date
+* Location
+* Current number of participants
+* Maximum number of participants
+
+BUTTONS / REQUIRED FEATURES
+
+1. ADD SESSION
+
+* Create a session using the values currently in the input fields.
+* Add it to the session list.
+* The session list should stay sorted by date.
+* Do NOT allow duplicate IDs.
+* If the ID already exists, display an error message.
+
+2. DISPLAY
+
+* Display every session.
+* Sessions must appear in chronological order by date.
+* Output goes into the scrollable output panel.
+
+3. SEARCH
+   Search uses the ID and Mentor fields.
+
+If ID is filled in:
+
+* Find the session with that ID.
+* Display it if it exists.
+* If it does not exist, display an error.
+
+If ID is blank but Mentor is filled in:
+
+* Display ALL sessions for that mentor.
+* Keep them in chronological order.
+
+If both ID and Mentor are blank:
+
+* Display nothing.
+
+4. REMOVE
+
+* Use the ID field.
+* Remove the session with that ID.
+* If no session has that ID, display an error.
+
+5. REGISTER
+
+* Use the ID field.
+* Find that session.
+* Increase current participants by 1.
+* Do NOT increase it if the session is already full.
+* Display an error/message if the session does not exist or is full.
+
+6. EXIT
+
+* Already works.
+* Closes the program.
+
+DATA STRUCTURES WE NEED
+
+SESSION
+Create a representation for one mentorship session.
+
+Probably contains something like:
+
+Session
+
+* id
+* title
+* mentor
+* date
+* location
+* participants
+* maxParticipants
+
+SESSION LINKED LIST
+Create a linked-list representation for storing Sessions.
+
+Likely similar to what we did in class:
+
+SessionNode
+
+* Session first
+* SessionNode rest
+
+IMPORTANT DATE RULE
+
+Dates are Strings formatted exactly like:
+
+YYYY-MM-DD
+
+Example:
+2026-09-08
+
+Always use:
+
+* 4-digit year
+* 2-digit month
+* 2-digit day
+
+This allows dates to be compared as Strings.
+
+Example:
+
+"2024-12-31".compareTo("2025-01-01") < 0
+
+means 2024-12-31 comes before 2025-01-01.
+
+KEEP THE LIST SORTED
+
+Whenever we add a session:
+
+* Find where its date belongs.
+* Put it after earlier dates.
+* Put it before later dates.
+
+Do NOT just add everything to the front/end and sort later.
+
+Sessions with the same date can be in any order.
+
+METHODS WE WILL PROBABLY NEED
+
+Possible helper methods:
+
+* containsID(...)
+  Check whether an ID already exists.
+
+* insertSorted(...)
+  Add a session in the correct date position.
+
+* findByID(...)
+  Find one session using its ID.
+
+* findByMentor(...)
+  Find/display all sessions for a mentor.
+
+* removeByID(...)
+  Remove a session.
+
+* register(...)
+  Increase participant count if possible.
+
+* displayAll(...)
+  Convert/display the full session list.
+
+We can choose our own method names.
+
+ERROR HANDLING
+
+Whenever something fails, print a helpful message in the GUI output area.
+
+Examples:
+
+* Duplicate ID
+* Session ID not found
+* Session is already full
+* Invalid/missing information
+
+STARTER CODE
+
+Repository:
+cp-csc2001/csc2001-project-1-template
+
+The starter project should already run.
+
+Run:
+MainGUI
+
+The GUI should appear.
+
+Currently:
+
+* Exit works.
+* Other buttons do not have their real functionality yet.
+
+Our job is mainly to:
+
+1. Create the Session representation.
+2. Create the linked-list representation.
+3. Write the linked-list/helper functions.
+4. Connect those functions to the GUI buttons.
+
+PROCESS JOURNAL
+
+Create this file at the TOP LEVEL of the repository:
+
+process-journal.txt
+
+For every work session record:
+
+* When we started
+* What we worked on
+* When we stopped
+
+Example:
+
+9/14/26
+Started: 1:30 PM
+Worked on: Created Session record and SessionList structure.
+
+
+Each session needs:
+
+* ID
+* Title
+* Mentor
+* Date
+* Location
+* Current number of participants
+* Maximum number of participants
+
+BUTTONS / REQUIRED FEATURES
+
+1. ADD SESSION
+
+* Create a session using the values currently in the input fields.
+* Add it to the session list.
+* The session list should stay sorted by date.
+* Do NOT allow duplicate IDs.
+* If the ID already exists, display an error message.
+
+2. DISPLAY
+
+* Display every session.
+* Sessions must appear in chronological order by date.
+* Output goes into the scrollable output panel.
+
+3. SEARCH
+   Search uses the ID and Mentor fields.
+
+If ID is filled in:
+
+* Find the session with that ID.
+* Display it if it exists.
+* If it does not exist, display an error.
+
+If ID is blank but Mentor is filled in:
+
+* Display ALL sessions for that mentor.
+* Keep them in chronological order.
+
+If both ID and Mentor are blank:
+
+* Display nothing.
+
+4. REMOVE
+
+* Use the ID field.
+* Remove the session with that ID.
+* If no session has that ID, display an error.
+
+5. REGISTER
+
+* Use the ID field.
+* Find that session.
+* Increase current participants by 1.
+* Do NOT increase it if the session is already full.
+* Display an error/message if the session does not exist or is full.
+
+6. EXIT
+
+* Already works.
+* Closes the program.
+
+DATA STRUCTURES WE NEED
+
+SESSION
+Create a representation for one mentorship session.
+
+Probably contains something like:
+
+Session
+
+* id
+* title
+* mentor
+* date
+* location
+* participants
+* maxParticipants
+
+SESSION LINKED LIST
+Create a linked-list representation for storing Sessions.
+
+Likely similar to what we did in class:
+
+SessionNode
+
+* Session first
+* SessionNode rest
+
+IMPORTANT DATE RULE
+
+Dates are Strings formatted exactly like:
+
+YYYY-MM-DD
+
+Example:
+2026-09-08
+
+Always use:
+
+* 4-digit year
+* 2-digit month
+* 2-digit day
+
+This allows dates to be compared as Strings.
+
+Example:
+
+"2024-12-31".compareTo("2025-01-01") < 0
+
+means 2024-12-31 comes before 2025-01-01.
+
+KEEP THE LIST SORTED
+
+Whenever we add a session:
+
+* Find where its date belongs.
+* Put it after earlier dates.
+* Put it before later dates.
+
+Do NOT just add everything to the front/end and sort later.
+
+Sessions with the same date can be in any order.
+
+METHODS WE WILL PROBABLY NEED
+
+Possible helper methods:
+
+* containsID(...)
+  Check whether an ID already exists.
+
+* insertSorted(...)
+  Add a session in the correct date position.
+
+* findByID(...)
+  Find one session using its ID.
+
+* findByMentor(...)
+  Find/display all sessions for a mentor.
+
+* removeByID(...)
+  Remove a session.
+
+* register(...)
+  Increase participant count if possible.
+
+* displayAll(...)
+  Convert/display the full session list.
+
+We can choose our own method names.
+
+ERROR HANDLING
+
+Whenever something fails, print a helpful message in the GUI output area.
+
+Examples:
+
+* Duplicate ID
+* Session ID not found
+* Session is already full
+* Invalid/missing information
+
+STARTER CODE
+
+Repository:
+cp-csc2001/csc2001-project-1-template
+
+The starter project should already run.
+
+Run:
+MainGUI
+
+The GUI should appear.
+
+Currently:
+
+* Exit works.
+* Other buttons do not have their real functionality yet.
+
+Our job is mainly to:
+
+1. Create the Session representation.
+2. Create the linked-list representation.
+3. Write the linked-list/helper functions.
+4. Connect those functions to the GUI buttons.
+
+PROCESS JOURNAL
+
+Create this file at the TOP LEVEL of the repository:
+
+process-journal.txt
+
+For every work session record:
+
+* When we started
+* What we worked on
+* When we stopped
+
+Example:
+
+9/14/26
+Started: 1:30 PM
+Worked on: Created Session record and SessionList structure.
