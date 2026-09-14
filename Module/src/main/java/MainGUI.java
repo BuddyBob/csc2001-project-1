@@ -8,8 +8,10 @@ public class MainGUI extends JFrame {
     private JTextField dateField;
     private JTextField locationField;
     private JTextField maxField;
-
     private JTextArea outputArea;
+
+    //This is a linked list of type SessionList.Node
+    private SessionList.Node sessions;
 
     // there should be a private member variable named `sessions` :
     // private SomethingOrOther sessions;
@@ -18,7 +20,7 @@ public class MainGUI extends JFrame {
     // the class's member variables:
     public MainGUI() {
         // set sessions to a new empty list:
-        // sessions = ...
+        sessions = null;
         setTitle("Employee Mentorship and Inclusion Manager");
         setSize(600, 600);
         // when this frame/window closes, halt the whole program:
@@ -26,6 +28,7 @@ public class MainGUI extends JFrame {
         setLocationRelativeTo(null);
         createGUI();
         setVisible(true);
+
     }
 
     // Create all of the display elements in the frame:
@@ -107,7 +110,7 @@ public class MainGUI extends JFrame {
 
             //Create a session object
             Session sesh = new Session(id, title,mentor, date, location, maxParticipants);
-
+            sessions = SessionList.Node.insertNode(sessions, sesh);
 
             outputArea.setText("Session Added Successfully\n");
             // Clear the input fields
