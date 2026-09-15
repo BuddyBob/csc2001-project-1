@@ -25,3 +25,5 @@ Worked on insertNode test
 started 12:45 PM
 worked on displaySesson
 Make sure session id doesn't already exist
+ - update at 1:37 PM
+added display sessions and search by id search by mentor

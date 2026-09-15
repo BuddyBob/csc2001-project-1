@@ -146,32 +146,69 @@ public class MainGUI extends JFrame {
 
 
     }
+    private Session searchByID(SessionList.Node lst, int id) {
+        return switch (lst) {
+            case null -> null;
+            case SessionList.Node(Session first, SessionList.Node rest) -> {
+                if (first.id == id) {
+                    yield first;
+                } else {
+                    yield searchByID(rest, id);
+                }
+            }
+        };
+    }
+
+    private SessionList.Node searchByMentor(SessionList.Node lst, String mentor) {
+        return switch (lst) {
+            case null -> null;
+            case SessionList.Node(Session first, SessionList.Node rest) -> {
+                if (mentor.equals(first.mentor)) {
+                    yield new SessionList.Node(first, searchByMentor(rest, mentor));
+                } else {
+                    yield searchByMentor(rest, mentor);
+                }
+            }
+        };
+    }
 
     // search by ID if presesnt, mentor otherwise, display results
     private void searchSession() {
-        // Search by ID if the ID field is not empty
+        // if ID exists
         if (!idField.getText().trim().isEmpty()) {
             int id = Integer.parseInt(idField.getText().trim());
+
             // find session by ID, using a `searchByID` method
             // ... code here ...
-            /* if (result != null)
-                // display session to the output area...
-            else
+            Session result = searchByID(sessions, id);
+
+            if (result != null){
+                outputArea.append("ID: " + result.id + "\nTitle: " + result.title + "\nMentor: " + result.mentor +
+                        "\nDate: " + result.date + "\nLocation: " + result.location
+                        + "\nParticipants: " + result.participants + "/" + result.maxParticipants);
+                outputArea.append("\n--------------------\n");
+            }else{
                 outputArea.setText("Session not found.");
-             */
+            }
         }
         // Otherwise, search by mentor if the Mentor field is not empty
         else if (!mentorField.getText().trim().isEmpty()) {
             String mentor = mentorField.getText().trim();
-            // find session by mentor. In this case, the result
-            // may be a list of sessions...
-            // ... code here ...
-            /*
-            if (result != null)
-                // display all sessions in the list
-            else
+            SessionList.Node result = searchByMentor(sessions, mentor);
+            if (result != null) {
+                outputArea.setText("");
+                SessionList.Node current = result;
+                while (current != null) {
+                    Session s = current.first();
+                    outputArea.append("ID: " + s.id + "\nTitle: " + s.title + "\nMentor: " + s.mentor
+                            + "\nDate: " + s.date + "\nLocation: " + s.location
+                            + "\nParticipants: " + s.participants + "/" + s.maxParticipants);
+                    outputArea.append("\n--------------------\n");
+                    current = current.rest();
+                }
+            } else {
                 outputArea.setText("No session found for mentor: " + mentor);
-             */
+            }
         }
         // Nothing entered
         else {
