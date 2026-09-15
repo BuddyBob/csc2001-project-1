@@ -141,7 +141,7 @@ public class MainGUI extends JFrame {
 
 
     }
-    private Session searchByID(SessionList.Node lst, int id) {
+    public Session searchByID(SessionList.Node lst, int id) {
         return switch (lst) {
             case null -> null;
             case SessionList.Node(Session first, SessionList.Node rest) -> {
@@ -223,7 +223,7 @@ public class MainGUI extends JFrame {
     }
     private void removeSession() {
         int id = Integer.parseInt(idField.getText());
-        if(searchByID(id)==null){
+        if(searchByID(sessions,id)==null){
             outputArea.setText("ID not Found");
             return;
         }
