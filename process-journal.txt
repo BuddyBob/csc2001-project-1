@@ -21,6 +21,7 @@ Worked on: Setting up sessions Nodes
 9/15
 started 12:36 PM
 Worked on insertNode test
+9/15
 started 12:45 PM
 worked on displaySesson
-
+Make sure session id doesn't already exist
