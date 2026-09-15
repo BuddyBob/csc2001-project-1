@@ -126,12 +126,16 @@ public class MainGUI extends JFrame {
     // display all sessions in the output area
     private void displaySessions() {
         outputArea.setText("");
+        //using a throwaway pointer
         SessionList.Node current = sessions;
+
         while(current!=null){
             Session s = current.first();
             outputArea.append("ID: " + s.id + "\nTitle: " + s.title + "\nMentor: " + s.mentor
                     + "\nDate: " + s.date + "\nLocation: " + s.location
                     + "\nParticipants: " + s.participants + "/" + s.maxParticipants);
+            outputArea.append("\n--------------------\n");
+            current=current.rest();
         }
         // iterate over sessions; display each one
         // to the output window, using the `append`
@@ -140,8 +144,7 @@ public class MainGUI extends JFrame {
         // between each one, print a separator line,
         // as e.g.
 
-        outputArea.append("\n--------------------\n");
-        current=current.rest();
+
     }
 
     // search by ID if presesnt, mentor otherwise, display results
