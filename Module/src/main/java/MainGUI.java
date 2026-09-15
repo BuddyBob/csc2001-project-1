@@ -113,6 +113,7 @@ public class MainGUI extends JFrame {
             Session sesh = new Session(id, title,mentor, date, location, maxParticipants);
             sessions = SessionList.Node.insertNode(sessions, sesh);
 
+
             outputArea.setText("Session Added Successfully\n");
             // Clear the input fields
             clearFields();
@@ -125,7 +126,10 @@ public class MainGUI extends JFrame {
     // display all sessions in the output area
     private void displaySessions() {
         outputArea.setText("");
-
+        SessionList.Node current = sessions;
+        while(current!=null){
+            Session s = current.first();
+        }
         // iterate over sessions; display each one
         // to the output window, using the `append`
         // method of the outputArea.
