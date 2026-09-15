@@ -137,12 +137,7 @@ public class MainGUI extends JFrame {
             outputArea.append("\n--------------------\n");
             current=current.rest();
         }
-        // iterate over sessions; display each one
-        // to the output window, using the `append`
-        // method of the outputArea.
 
-        // between each one, print a separator line,
-        // as e.g.
 
 
     }
