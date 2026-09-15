@@ -23,5 +23,15 @@ class MainTest {
         assertEquals(2, result2.first().id);
         assertEquals(1, result2.rest().first().id);
     }
+    @Test
+    void displaySessionsShowsSessionInfo() {
+        MainGUI gui = new MainGUI();
+
+        Session s1 = new Session(1, "Intro to Java", "Dr. Lee", "2026-09-14", "Room 101", 10);
+        gui.sessions = new SessionList.Node(s1, null);
+
+        gui.displaySessions();
+
+        assertTrue(gui.outputArea.getText().contains("Intro to Java"));
 
 }
