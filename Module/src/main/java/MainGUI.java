@@ -217,8 +217,23 @@ public class MainGUI extends JFrame {
     }
 
     // given an id, remove that session from the list
+    private SessionList.Node removeByID(SessionList.Node head,int id){
+        if(head==null){
+            return null;
+        }
+        if(head.first().id ==id){
+            return head.rest();
+        }
+        return new SessionList.Node(head.first(),removeByID(head.rest(),id));
+    }
     private void removeSession() {
         int id = Integer.parseInt(idField.getText());
+        if(searchByID(id)==null){
+            outputArea.setText("ID not Found");
+            return;
+        }
+        sessions =removeByID(sessions,id);
+        outputArea.setText("Session removed successfully");
         // remove the session, print an error to the outputArea
         // if it's not found
         // ... code here ...
