@@ -8,6 +8,7 @@ public class MainGUI extends JFrame {
     private JTextField dateField;
     private JTextField locationField;
     private JTextField maxField;
+
     private JTextArea outputArea;
 
     //This is a linked list of type SessionList.Node
