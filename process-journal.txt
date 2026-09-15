@@ -16,3 +16,8 @@ Worked on: Created Session record and SessionList structure.
 Sep 14, 2026
 Started 1:30 PM
 Worked on: Setting up sessions Nodes
+
+
+9/15
+started 12:36 PM
+Worked on insertNode test
