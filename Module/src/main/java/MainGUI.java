@@ -129,6 +129,9 @@ public class MainGUI extends JFrame {
         SessionList.Node current = sessions;
         while(current!=null){
             Session s = current.first();
+            outputArea.append("ID: " + s.id + "\nTitle: " + s.title + "\nMentor: " + s.mentor
+                    + "\nDate: " + s.date + "\nLocation: " + s.location
+                    + "\nParticipants: " + s.participants + "/" + s.maxParticipants);
         }
         // iterate over sessions; display each one
         // to the output window, using the `append`
@@ -138,6 +141,7 @@ public class MainGUI extends JFrame {
         // as e.g.
 
         outputArea.append("\n--------------------\n");
+        current=current.rest();
     }
 
     // search by ID if presesnt, mentor otherwise, display results
